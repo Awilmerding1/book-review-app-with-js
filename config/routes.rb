@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :genres
 
   get '/login' => "sessions#new"
-  post '/users' => "sessions#create"
+  post '/users/:id' => "sessions#create"
   post '/' => "sessions#destroy"
 
   get '/auth/facebook/callback' => 'sessions#create'

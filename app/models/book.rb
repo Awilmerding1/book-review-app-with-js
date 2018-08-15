@@ -1,8 +1,8 @@
 class Book < ActiveRecord::Base
-  Belongs_to :author
-	Has_many :book_genres
-	Has_many :genres, through: :book_genres
-	Has_many :reviews
-	Has_many :users, through: :reviews
+  belongs_to :author
+	has_many :book_genres
+	has_many :genres, through: :book_genres
+	has_many :reviews
+	has_many :users, through: :reviews
 
 end

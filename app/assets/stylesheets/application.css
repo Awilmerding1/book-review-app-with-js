@@ -74,6 +74,10 @@ main {
   min-height: 550px;
 }
 
+.text {
+  margin: 20px;
+}
+
 .capsule {
   margin-left: auto;
   margin-right: auto;
