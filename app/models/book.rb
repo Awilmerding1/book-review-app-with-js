@@ -1,4 +1,4 @@
-class Book < ApplicationRecord
+class Book < ActiveRecord::Base
   Belongs_to :author
 	Has_many :book_genres
 	Has_many :genres, through: :book_genres

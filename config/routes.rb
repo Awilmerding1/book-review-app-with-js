@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   post '/users' => "sessions#create"
   post '/' => "sessions#destroy"
 
+  get '/auth/facebook/callback' => 'sessions#create'
+
   root 'users#home'
 end

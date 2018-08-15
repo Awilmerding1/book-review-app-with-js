@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login
+  
 
   def home
   end
@@ -23,6 +24,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :password)
   end
 
-  
+
 
 end
