@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   resources :reviews
   resources :genres
 
+  get '/login' => "sessions#new"
+  post '/users' => "sessions#create"
+  post '/' => "sessions#destroy"
+
   root 'users#home'
 end
