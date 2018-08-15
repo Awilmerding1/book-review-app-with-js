@@ -1,2 +1,6 @@
-class UsersController < ApplicationController 
+class UsersController < ApplicationController
+
+  def home
+  end
+
 end
