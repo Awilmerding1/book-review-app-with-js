@@ -1,14 +1,15 @@
 <h1>Please Sign Up</h1>
 
-<%=form_for @user do |f|%>
-  <%=f.label "Name:"%><br>
-  <%=f.text_field :name%><br>
-  <%=f.label "Password:"%><br>
-  <%=f.password_field :password%><br>
-  <%=f.label "Confirm Password:"%><br>
-  <%=f.password_field :password_confirmation%><br><br>
-  <%=f.submit "Sign Up", user_path(@user)%>
-<%end%>
+  <%=form_for @user do |f|%>
+    <%=f.label "Name:"%><br>
+    <%=f.text_field :name%><br>
+    <%=f.label "Password:"%><br>
+    <%=f.password_field :password%><br>
+    <%=f.label "Confirm Password:"%><br>
+    <%=f.password_field :password_confirmation%><br><br>
+    <%=f.submit "Sign Up", user_path(@user)%>
+  <%end%>
+
 
 
 <%= link_to('Log in with Facebook', '/auth/facebook') %>

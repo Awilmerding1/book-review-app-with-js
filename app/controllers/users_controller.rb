@@ -10,7 +10,12 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if !session[:user_id]
+      @user = User.new
+    else
+      @user = User.find(session[:user_id])
+      redirect_to "/users/#{@user.id}"
+    end
   end
 
   def create
