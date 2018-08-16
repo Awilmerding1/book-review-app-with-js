@@ -10,7 +10,7 @@ class Book < ActiveRecord::Base
   end
 
   def author_name
-    self.author ? self.autho.name : nil
+    self.author ? self.author.name : nil
   end
 
 end
