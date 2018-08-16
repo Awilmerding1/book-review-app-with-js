@@ -5,13 +5,13 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(user_id: current_user.id, book_title: params[:book_title])
-    @review.book
+    @review = Review.new(review_params)
     @review.save
     redirect_to "/users/#{current_user.id}"
   end
 
   def show
+    @review = Review.find(params[:id])
   end
 
   private
