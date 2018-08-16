@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :users
+  resources :users do
+    resources :reviews
+  end
   resources :books
   resources :authors do
     resources :books
