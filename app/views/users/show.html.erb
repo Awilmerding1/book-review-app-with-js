@@ -18,10 +18,11 @@
 <%= submit_tag "Filter" %>
 <% end %>
 
-<% @posts.each do |post| %>
+<% @reviews.each do |review| %>
   <div>
-    <h2><%= post.title %></h2>
-    <h3>by: <%= link_to post.author.name, author_path(post.author) %></h3>
-    <p><%= post.description %></p>
+		<h3>Book Title: <%= link_to review.book.title, book_path(review.book) %></h3>
+    <h3>Author: <%= link_to review.book.author_name, author_path(review.book.author) %></h3>
+		<h4>Rating: <%= review.rating %> Stars</h4>
+    <p><%= review.content %></p>
   </div>
 <% end %>
