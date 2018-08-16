@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   resources :reviews
   resources :genres
 
+  get '/signup' => "users#new"
+  post '/users' => "users#create"
   get '/login' => "sessions#new"
-  post '/users/:id' => "sessions#create"
+  post '/login' => "sessions#create"
   post '/logout' => "sessions#destroy"
 
   get '/auth/facebook/callback' => 'sessions#create'

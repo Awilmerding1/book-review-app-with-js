@@ -4,13 +4,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if User.find_or_create_by(name: auth[:info]['name'])
+    if auth
       @user = User.find_or_create_by(name: auth[:info]['name'])
     	session[:user_id] = @user.id
     	redirect_to user_path(@user)
-    elsif User.find_by(name: params[:user][:name])
-      @user = User.find_by(name: params[:user][:name])
-      if @user && @user.authenticate(params[:password])
+    elsif User.find_by(name: params[:session][:name])
+      @user = User.find_by(name: params[:session][:name])
+      if @user && @user.authenticate(params[:session][:password])
         session[:user_id] = @user.id
       redirect_to user_path(@user)
       end

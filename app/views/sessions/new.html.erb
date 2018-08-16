@@ -1,9 +1,17 @@
-<%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do %>
+<!-- <%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do %>
   <%=label_tag "Please enter username."%><br>
   <%=text_field_tag :name%><br>
   <%=label_tag "Password"%><br>
   <%=password_field_tag :password %><br>
   <%= submit_tag "Sign In"%><br><br>
-<% end %>
+<% end %> -->
 
 <%= link_to('Log in with Facebook!', '/auth/facebook') %>
+
+<%= form_for(:session, action: 'create', method: 'post') do |f| %>
+<%=f.label "Please enter username."%><br>
+<%=f.text_field :name%><br>
+<%=f.label "Password"%><br>
+<%=f.password_field :password %><br>
+<%= f.submit "Sign In"%><br><br>
+<% end %>
