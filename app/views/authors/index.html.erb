@@ -1,7 +1,16 @@
 <h1>All Authors</h1>
+<%if !params[:genre].blank?%>
+  <% @authors = Author.joins(books: :genres)%>
+<% end %>
 
-<ol>
-<%@authors.each do |author|%>
-<li><%=link_to author.name, author_path(author)%> </li>
-<%end%>
-</ol>
+<text>Filter Genres:</text>
+<%= form_tag("/authors", method: "get") do %>
+<%= select_tag "genre", options_from_collection_for_select(Genre.all, "id", "name"), include_blank: true %>
+<%= submit_tag "Filter" %>
+<% end %>
+
+<% @authors.each do |author| %>
+<div>
+  <h3>Name: <%= link_to author.name, author_path(author) %></h3>
+</div>
+<% end %>

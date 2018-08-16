@@ -1,9 +1,0 @@
-<h1><%=@author.name%></h1>
-
-<h4>Books</h4>
-
-<ol>
-<%@books.each do |book|%>
-<li><%=link_to book.title, book_path(book)%></li>
-<%end%>
-</ol>

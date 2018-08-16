@@ -1,7 +1,7 @@
-<h1>All Books</h1>
+<h1>All Genres</h1>
 
 <ol>
-<%@books.each do |book|%>
-<li><%=book.title%> - <%=book.author_name%></li>
+<%=@genres.each do |genre|%>
+<li><%=link_to genre.name, genre_path(genre)%></li>
 <%end%>
 </ol>

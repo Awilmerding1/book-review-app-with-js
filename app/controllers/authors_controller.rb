@@ -2,6 +2,7 @@ class AuthorsController < ApplicationController
 
   def index
     @authors = Author.all
+    @genres = Genre.all
   end
 
   def new

@@ -1,10 +1,7 @@
-<h1><%=@book.title%></h1>
-<h3>Author: <%=@book.author_name%></h3>
+<h1><%=@genre.name%></h1>
 
-<h4>Reviews</h4>
-
-<%@reviews.each do |review|%>
-<h6><%=review.user.name%></h6>
-<p>Rating: <%=review.rating%></p>
-<p><%=review.content%></p>
+<ol>
+<%@genre.books.each do |book|%>
+<li><h3><%=link_to book.title, book_path(book)%> - <%=link_to book.author_name, author_path(book.author)%></h3></li>
 <%end%>
+</ol>
