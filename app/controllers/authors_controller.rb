@@ -9,7 +9,6 @@ class AuthorsController < ApplicationController
   end
 
   def create
-    binding.pry
     @author = Author.new(author_params)
     @author.save
     redirect_to "/authors/#{@author.id}"
