@@ -1,0 +1,14 @@
+<h1><%=@author.name%></h1>
+
+<ul>
+<%@author.books.each do |book|%>
+<li><h3><%=book.title%></h3></li>
+<li><h3>Genres</h3></li>
+  <%book.genres.each do |genre|%>
+  <ul>
+    <li><h3><%=genre.name%></h3></li>
+  </ul>
+<%end%>
+<li><h3><%=link_to "Reviews", book_reviews_path(book)%></h3></li>
+<%end%>
+</ul>
