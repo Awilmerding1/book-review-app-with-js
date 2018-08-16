@@ -1,13 +1,10 @@
-	<!-- <%= form_for(@book) do |f| %>
-  <%= f.hidden_field :author_id %>
-  <%=f.label "Title"%>
-  <%=f.text_field :title%>
-	<%=f.label "Author:"%><br>
-	<%= f.text_field :rating %><br>
-  <%=f.submit%> -->
 
 <%= form_for @author do |f| %>
-<%=f.label "Name"%>
-<%=f.text_field :name%>
+<%=f.label "Name:"%>
+<%=f.text_field :name%><br>
+<%=f.label "Book Title:"%>
+<%= f.fields_for :books, @author.books.build do |books_fields| %>
+  <%= books_fields.text_field :title %><br>
+<% end %>
 <%= f.submit "Create Author"%>
 <% end %>

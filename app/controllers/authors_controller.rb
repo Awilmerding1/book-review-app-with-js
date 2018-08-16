@@ -9,6 +9,7 @@ class AuthorsController < ApplicationController
   end
 
   def create
+    binding.pry
     @author = Author.new(author_params)
     @author.save
     redirect_to "/authors/#{@author.id}"
@@ -22,7 +23,7 @@ class AuthorsController < ApplicationController
   private
 
   def author_params
-    params.require(:author).permit(:name)
+    params.require(:author).permit(:name, books_attributes: [:title], book_ids:[])
   end
 
 
