@@ -9,11 +9,15 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <header>
-    <h1>Header</h1>
+    <h1>Book Review</h1>
     <nav>
-      <a href=#>About</a>
-      <a href=#>Blog</a>
-      <a href=#>Contact</a>
+      <%if logged_in?%>
+      <%=link_to "My Profile", user_path(current_user)%>
+      <%=link_to "All Books", books_path%>
+      <%=link_to "All Authors", authors_path%>
+      <%=link_to "All Genres", genres_path%>
+      <%=link_to "Log Out", logout_path, method:'post', action:'destroy'%>
+      <%end%>
     </nav>
   </header>
 

@@ -34,8 +34,6 @@ header nav a {
   padding: .75em;
   color: white;
   font-weight: 600;
-  text-transform: lowercase;
-  width: 33.33%;
   float: left;
 }
 a {

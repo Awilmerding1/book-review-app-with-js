@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get '/login' => "sessions#new"
   post '/users/:id' => "sessions#create"
-  post '/' => "sessions#destroy"
+  post '/logout' => "sessions#destroy"
 
   get '/auth/facebook/callback' => 'sessions#create'
 
