@@ -1,6 +1,6 @@
 
-<%= form_for @book do |f| %>
-<%=f.label "Title:"%>
+<%= form_for @genre do |f| %>
+<%=f.label "Name:"%>
 <%=f.text_field :title%><br><br>
 <%=f.label "Author:"%>
   <%= f.text_field :author_name, list: "authors_autocomplete" %>
@@ -9,11 +9,5 @@
       <option value="<%= author.name %>"><br>
     <% end %><br><br>
   </datalist><br><br>
-  <%=f.label "Genre:"%>
-  <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %>
-  <%= f.fields_for :genres, @book.genres.build do |genres_fields| %>
-    <%= genres_fields.text_field :name %>
-<% end %><br><br>
-
   <%= f.submit "Add Book"%>
 <% end %>

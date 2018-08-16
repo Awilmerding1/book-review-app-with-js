@@ -1,12 +1,6 @@
 <h1><%=@book.title%></h1>
 <h3>Author: <%=@book.author_name%></h3>
-<h3>Genres</h3>
-<ul>
 
-<%@book.genres.each do |genre|%>
-  <li> <%=genre.name%> </li>
-<%end%>
-</ul>
 <h4>Reviews</h4>
 
 <%@reviews.each do |review|%>

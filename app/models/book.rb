@@ -5,6 +5,8 @@ class Book < ActiveRecord::Base
 	has_many :reviews
 	has_many :users, through: :reviews
 
+    accepts_nested_attributes_for :genres
+
   def author_name=(name)
     self.author = Author.find_or_create_by(name: name)
   end
@@ -12,5 +14,21 @@ class Book < ActiveRecord::Base
   def author_name
     self.author ? self.author.name : nil
   end
+
+  def genre_name=(name)
+    self.genre = Genre.find_or_create_by(name: name)
+  end
+
+  def genre_name
+    self.genre ? self.genre.name : nil
+  end
+
+  def genres_attributes=(genre_attributes)
+    genre_attributes.values.each do |genre_attribute|
+        genre = Genre.find_or_create_by(genre_attribute)
+        self.genres << genre
+    end
+  end
+
 
 end

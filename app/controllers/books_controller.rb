@@ -17,12 +17,14 @@ class BooksController < ApplicationController
     def show
       @book = Book.find(params[:id])
       @reviews = @book.reviews
+      @genres = @book.genres
     end
 
     private
 
     def book_params
-      params.require(:book).permit(:title, :author_name)
+      params.require(:book).permit(:title, :author_name, genre_ids:[],
+	        genres_attributes: [:name])
     end
 
 end
