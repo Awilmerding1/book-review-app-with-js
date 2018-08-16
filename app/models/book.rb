@@ -5,4 +5,12 @@ class Book < ActiveRecord::Base
 	has_many :reviews
 	has_many :users, through: :reviews
 
+  def author_name=(name)
+    self.author = Author.find_or_create_by(name: name)
+  end
+
+  def author_name
+    self.author ? self.autho.name : nil
+  end
+
 end

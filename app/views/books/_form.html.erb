@@ -1,0 +1,19 @@
+	<!-- <%= form_for(@book) do |f| %>
+  <%= f.hidden_field :author_id %>
+  <%=f.label "Title"%>
+  <%=f.text_field :title%>
+	<%=f.label "Author:"%><br>
+	<%= f.text_field :rating %><br>
+  <%=f.submit%> -->
+
+<%= form_for @book do |f| %>
+<%=f.label "Title"%>
+<%=f.text_field :title%>
+  <%= f.text_field :author_name, list: "authors_autocomplete" %>
+  <datalist id="authors_autocomplete">
+    <% Author.all.each do |author| %>
+      <option value="<%= author.name %>">
+    <% end %>
+  </datalist>
+  <%= f.submit "Add Book"%>
+<% end %>

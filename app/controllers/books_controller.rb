@@ -17,8 +17,8 @@ class BooksController < ApplicationController
 
     private
 
-    def review_params
-      params.require(:review).permit(:content, :rating, :book_title, :user_id)
+    def book_params
+      params.require(:book).permit(:title, :author_name)
     end
 
 end
