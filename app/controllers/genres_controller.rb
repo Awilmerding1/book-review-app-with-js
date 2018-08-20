@@ -10,8 +10,11 @@ class GenresController < ApplicationController
 
   def create
     @genre = Genre.new(genre_params)
-    @genre.save
-    redirect_to "/genres/#{@genre.id}"
+    if @genre.save
+      redirect_to "/genres/#{@genre.id}"
+    else
+      render "/genres/new"
+    end
   end
 
   def show

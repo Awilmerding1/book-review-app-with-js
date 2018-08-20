@@ -11,8 +11,11 @@ class AuthorsController < ApplicationController
 
   def create
     @author = Author.new(author_params)
-    @author.save
+    if @author.save
     redirect_to "/authors/#{@author.id}"
+    else
+      render "/authors/new"
+    end
   end
 
   def show
