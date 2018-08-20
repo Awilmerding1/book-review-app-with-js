@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-    resources :reviews, only: [:create]
+    resources :reviews, only: [:create, :update]
 
   resources :users do
     resources :reviews
@@ -26,7 +26,8 @@ Rails.application.routes.draw do
   get "/books/:id/reviews" => "reviews#index"
   get "/books/:id/reviews/:id" => "reviews#show"
   post "/books/:id/reviews/:id" => "reviews#create"
-
+  get "/books/:id/reviews/:id/edit" => "reviews#edit"
+  patch "/books/:id/reviews/:id/edit"  => "reviews#update"
   get '/auth/facebook/callback' => 'sessions#create'
 
   root 'users#home'

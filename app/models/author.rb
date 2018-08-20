@@ -3,7 +3,7 @@ class Author < ActiveRecord::Base
 	has_many :reviews, through: :books
 	has_many :users, through: :books
 	has_many :genres, through: :books
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, :uniqueness => {message: "- the author you entered has already been added to the website."}
   validate :is_title_case
 	before_validation :make_title_case
 

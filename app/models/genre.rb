@@ -2,7 +2,7 @@ class Genre < ActiveRecord::Base
   has_many :book_genres
 	has_many :books, through: :book_genres
 	has_many :authors, through: :books
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, :uniqueness => {message: "- the genre you entered has already been added to the website."}
   validate :is_title_case
   before_validation :make_title_case
 
