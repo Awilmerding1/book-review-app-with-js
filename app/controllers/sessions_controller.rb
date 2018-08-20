@@ -4,9 +4,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if auth
-      @user = User.find_or_create_by(name: auth[:info]['name'])
+    if auth && User.find_by(name: auth[:info]['name'])
+      @user = User.find_by(name: auth[:info]['name'])
     	session[:user_id] = @user.id
+    	redirect_to user_path(@user)
+    elsif auth && !User.find_by(name: auth[:info]['name'])
+      @user = User.new(name: auth[:info]['name'], password: "omniauth", password_confirmation: "omniauth")
+      @user.save
+      session[:user_id] = @user.id
     	redirect_to user_path(@user)
     elsif User.find_by(name: params[:session][:name])
       @user = User.find_by(name: params[:session][:name])
