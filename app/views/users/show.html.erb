@@ -1,9 +1,9 @@
 	<% if !params[:author].blank?%>
-	 <% @reviews = Review.joins(:book).where('author_id = ?', params[:author])%> 
+	 <% @reviews = Review.joins(:book).where('author_id = ?', params[:author])%>
   <%elsif !params[:book].blank?%>
     <% @reviews = Review.where(book: params[:book], user_id: current_user.id) %>
   <%elsif !params[:genre].blank?%>
-    <% @reviews = Review.w %>
+    <% @reviews = Review.joins(book: :genres).where('genres.id = ?', params[:genre]) %>
 	<% end %>
 
 
