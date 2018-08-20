@@ -15,8 +15,10 @@
 <h3><%=@filtered_genre%> Books</h3>
 <%end%>
 
-<% @authors.each do |author| %>
 <div>
-  <h3>Name: <%= link_to author.name, author_path(author) %></h3>
-</div>
+<ol>
+<% @authors.each do |author| %>
+  <li><%= link_to author.name, author_path(author) %></li>
 <% end %>
+</ol>
+</div>

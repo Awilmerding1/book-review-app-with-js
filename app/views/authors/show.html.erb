@@ -5,7 +5,7 @@
 
 <h1><%=@author.name%></h1>
 
-<text>Filter Books By Genres:</text>
+<text>Filter By Genre:</text>
 <%= form_tag("/authors/#{@author.id}", method: "get") do %>
 <%= select_tag "genre", options_from_collection_for_select(Genre.all, "id", "name"), include_blank: true %>
 <%= submit_tag "Filter" %>
