@@ -4,7 +4,8 @@
   <% @reviews = Review.where(genre: params[:genre]) %>
 <% end %>
 
-<h1>All Books</h1>
+<h1 class="index-head">All Books</h1>
+<text class="new"><%=link_to "New Book", new_book_path%></text>
 
 <%= form_tag("/books", method: "get") do %>
 <text>Filter By Author:</text>
