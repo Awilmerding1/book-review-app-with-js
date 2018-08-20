@@ -1,7 +1,7 @@
 <h1 class="index-head">All Authors</h1>
 <text class="new"><%=link_to "New Author", new_author_path%></text>
 <%if !params[:genre].blank?%>
-  <% @authors = Author.joins(books: :genres)%>
+  <% @authors = Author.joins(books: :genres).where('genres.id = ?', params[:genre]).uniq%>
   <%=@filtered_genre = @authors.first.genres.first.name%>
 <% end %>
 
