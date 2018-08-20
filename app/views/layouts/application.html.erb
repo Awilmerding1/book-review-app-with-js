@@ -13,9 +13,9 @@
     <nav>
       <%if logged_in?%>
       <%=link_to "#{current_user.name}'s <br /> Profile".html_safe, user_path(current_user), id:"profile"%>
-      <%=link_to "All Books", books_path%>
-      <%=link_to "All Authors", authors_path%>
-      <%=link_to "All Genres", genres_path%>
+      <%=link_to "Books", books_path%>
+      <%=link_to "Authors", authors_path%>
+      <%=link_to "Genres", genres_path%>
       <%=link_to "Log Out", logout_path, method:'post', action:'destroy'%>
       <%end%>
       <%if !logged_in?%>

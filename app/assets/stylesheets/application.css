@@ -103,8 +103,8 @@ main {
     width: 40%;
   }
   main section {
-    width: 60%;
-    padding-right: 0;
+    width: 100%;
+    padding-right: 50px;
   }
   header h1 {
     float: left;
@@ -112,4 +112,14 @@ main {
   header nav {
     float: right;
   }
+}
+
+.new {
+  float: right;
+  margin-right: 0;
+  display: inline-block;
+}
+
+.index-head {
+    display:inline-block;
 }
