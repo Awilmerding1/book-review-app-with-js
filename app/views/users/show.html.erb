@@ -1,10 +1,11 @@
 	<% if !params[:author].blank?%>
-	 <% @reviews = Review.where(author: params[:author]) %>
+	 <% @reviews = Review.joins(book: :author).where(user_id: current_user.id) %>
   <%elsif !params[:book].blank?%>
-    <% @reviews = Review.where(book: params[:book]) %>
+    <% @reviews = Review.where(book: params[:book], user_id: current_user.id) %>
   <%elsif !params[:genre].blank?%>
-    <% @reviews = Review.where(genre: params[:genre]) %>
+    <% @reviews = Review.joins(book: :genres) %>
 	<% end %>
+
 
 <h1><%=@user.name%></h1>
 

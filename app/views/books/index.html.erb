@@ -23,8 +23,10 @@
 <h3>Books By <%=@filtered_author%></h3>
 <%end%>
 
+<div>
 <ol>
 <%@books.each do |book|%>
 <li><%=link_to book.title, book_path(book)%> - <%=link_to book.author_name, author_path(book.author)%></li>
 <%end%>
 </ol>
+</div>
