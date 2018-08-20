@@ -4,8 +4,9 @@ class Book < ActiveRecord::Base
 	has_many :genres, through: :book_genres
 	has_many :reviews
 	has_many :users, through: :reviews
-
+  validates :title, presence: true, uniqueness: true
   accepts_nested_attributes_for :genres
+
   def author_name=(name)
     self.author = Author.find_or_create_by(name: name)
   end

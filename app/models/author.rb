@@ -3,7 +3,7 @@ class Author < ActiveRecord::Base
 	has_many :reviews, through: :books
 	has_many :users, through: :books
 	has_many :genres, through: :books
-
+  validates :name, presence: true, uniqueness: true
   accepts_nested_attributes_for :books
 
   def books_attributes=(book_attributes)
