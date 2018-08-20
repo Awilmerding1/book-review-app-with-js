@@ -2,7 +2,7 @@
  <% @books = Book.where(author: params[:author]) %>
  <%@filtered_author = @books.first.author.name%>
 <%elsif !params[:genre].blank?%>
-  <% @books = Book.joins(genres: :book_genres) %>
+  <% @books = Book.joins(:genres).where('genres.id = ?', params[:genre]) %>
   <%@filtered_genre = @books.first.genres.first.name%>
 <% end %>
 
