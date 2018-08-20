@@ -1,8 +1,5 @@
 class ReviewsController < ApplicationController
 
-  def show
-    @review = Review.find(params[:id])
-  end
 
   def new
     @review = Review.new(book_id: params[:book_id], user_id: current_user.id)
@@ -15,6 +12,10 @@ class ReviewsController < ApplicationController
     redirect_to "/books/#{@review.book_id}/reviews/#{@review.id}"
   end
 
+
+    def show
+      @review = Review.find(params[:id])
+    end
 
 
   private
