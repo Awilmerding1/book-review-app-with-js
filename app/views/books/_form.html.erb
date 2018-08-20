@@ -9,11 +9,12 @@
       <option value="<%= author.name %>"><br>
     <% end %><br><br>
   </datalist><br><br>
-  <%=f.label "Genre:"%>
+  <%=f.label "Genres:"%>
   <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %>
-  <%= f.fields_for :genres, @book.genres.build do |genres_fields| %>
-    <%= genres_fields.text_field :name %>
-<% end %><br><br>
+  <%= f.fields_for :genres, @book.genres.build do |genres_fields| %><br>
+  <%=f.label "Add a New Genre:"%>
+    <%= genres_fields.text_field :name%>
+  <% end %><br><br>
 
   <%= f.submit "Add Book"%>
 <% end %>
