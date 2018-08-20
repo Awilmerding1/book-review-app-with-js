@@ -1,9 +1,9 @@
 	<% if !params[:author].blank?%>
-	 <% @reviews = Review.joins(book: :author).where(user_id: current_user.id) %>
+	 <% @reviews = Review.joins(:book).where('author_id = ?', params[:author])%> 
   <%elsif !params[:book].blank?%>
     <% @reviews = Review.where(book: params[:book], user_id: current_user.id) %>
   <%elsif !params[:genre].blank?%>
-    <% @reviews = Review.joins(book: :genres) %>
+    <% @reviews = Review.w %>
 	<% end %>
 
 
@@ -13,9 +13,9 @@
 
 <text>Filter Reviews:</text>
 <%= form_tag("/users/#{@user.id}", method: "get") do %>
-<%= select_tag "book", options_from_collection_for_select(Book.all, "id", "title"), include_blank: true %>
-<%= select_tag "author", options_from_collection_for_select(Author.all, "id", "name"), include_blank: true %>
-<%= select_tag "genre", options_from_collection_for_select(Genre.all, "id", "name"), include_blank: true %>
+<%= select_tag "book", options_from_collection_for_select(@user.books.uniq, "id", "title"), include_blank: true %>
+<%= select_tag "author", options_from_collection_for_select(@user.authors.uniq, "id", "name"), include_blank: true %>
+<%= select_tag "genre", options_from_collection_for_select(@user.genres.uniq, "id", "name"), include_blank: true %>
 <%= submit_tag "Filter" %>
 <% end %>
 

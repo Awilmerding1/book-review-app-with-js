@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-
   resources :books do
     resources :reviews
   end
@@ -27,7 +26,6 @@ Rails.application.routes.draw do
   get "/books/:id/reviews" => "reviews#index"
   get "/books/:id/reviews/:id" => "reviews#show"
   post "/books/:id/reviews/:id" => "reviews#create"
-
 
   get '/auth/facebook/callback' => 'sessions#create'
 
