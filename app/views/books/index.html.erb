@@ -1,7 +1,9 @@
 <% if !params[:author].blank?%>
- <% @reviews = Review.where(author: params[:author]) %>
+ <% @books = Book.where(author: params[:author]) %>
+ <%@filtered_author = @books.first.author.name%>
 <%elsif !params[:genre].blank?%>
-  <% @reviews = Review.where(genre: params[:genre]) %>
+  <% @books = Book.joins(genres: :book_genres) %>
+  <%@filtered_genre = @books.first.genres.first.name%>
 <% end %>
 
 <h1 class="index-head">All Books</h1>
@@ -13,7 +15,13 @@
 <text>Filter By Genre:</text>
 <%= select_tag "genre", options_from_collection_for_select(Genre.all, "id", "name"), include_blank: true %><br>
 <%= submit_tag "Filter" %>
-<% end %>
+<% end %><br>
+
+<%if @filtered_genre%>
+<h3><%=@filtered_genre%> Books</h3>
+<% elsif @filtered_author%>
+<h3>Books By <%=@filtered_author%></h3>
+<%end%>
 
 <ol>
 <%@books.each do |book|%>
