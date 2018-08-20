@@ -5,7 +5,7 @@ class Author < ActiveRecord::Base
 	has_many :genres, through: :books
   validates :name, presence: true, uniqueness: true
   validate :is_title_case
-	before_validation :make_title_case 
+	before_validation :make_title_case
 
   accepts_nested_attributes_for :books
 

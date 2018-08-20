@@ -4,7 +4,7 @@ class Book < ActiveRecord::Base
 	has_many :genres, through: :book_genres
 	has_many :reviews
 	has_many :users, through: :reviews
-  validates :title, presence: true, uniqueness: true
+  validates :title, :presence => {message: "- please enter a title."}, :uniqueness => {message: "- the book title you entered has already been added to the website."}
   validate :is_title_case
 	before_validation :make_title_case
 
