@@ -1,16 +1,20 @@
-<h1><%=@book.title%></h1>
+<h1 class="index-head"><%=@book.title%></h1>
+<text class="new"><%=link_to "New Review", new_book_review_path(@book)%></text>
 <h3>Author: <%=@book.author_name%></h3>
 <h3>Genres</h3>
-<ul>
 
+<ul>
 <%@book.genres.each do |genre|%>
   <li> <%=genre.name%> </li>
 <%end%>
 </ul>
-<h4>Reviews</h4>
 
+<h3>Reviews</h3>
+
+<div class = "review">
 <%@reviews.each do |review|%>
-<h6><%=review.user.name%></h6>
-<p>Rating: <%=review.rating%></p>
-<p><%=review.content%></p>
+<h4 class="r-name"><%=link_to review.user.name, user_path(review.user)%></h4>
+<p class="r-rating">Rating: <%=review.rating%></p>
+<p class="r-content"><%=review.content%></p><br>
 <%end%>
+</div>

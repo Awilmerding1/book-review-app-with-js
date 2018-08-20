@@ -1,5 +1,7 @@
-<h1>Review of: <%=@review.book_title%> by: <%=@review.book.author_name%></h1>
-<h2>Reviewed by: <%=@review.user.name%></h2>
+
+<h2><%=link_to @review.book_title, book_path(@review.book)%> Review</h2>
+<h3>Author: <%=link_to @review.book.author_name, author_path(@review.book.author)%></h3>
+<h3>Reviewer: <%=link_to @review.user.name, user_path(@review.user)%></h3>
 
 <h3>Rating: <%=@review.rating%> Stars</h3>
 
