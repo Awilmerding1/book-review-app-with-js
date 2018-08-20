@@ -10,8 +10,11 @@ class BooksController < ApplicationController
 
     def create
       @book = Book.new(book_params)
-      @book.save
-      redirect_to "/books/#{@book.id}"
+      if @book.save
+        redirect_to "/books/#{@book.id}"
+      else
+        render '/books/new'
+      end
     end
 
     def show
