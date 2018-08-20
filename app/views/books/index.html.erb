@@ -1,7 +1,21 @@
+<% if !params[:author].blank?%>
+ <% @reviews = Review.where(author: params[:author]) %>
+<%elsif !params[:genre].blank?%>
+  <% @reviews = Review.where(genre: params[:genre]) %>
+<% end %>
+
 <h1>All Books</h1>
+
+<%= form_tag("/books", method: "get") do %>
+<text>Filter By Author:</text>
+<%= select_tag "author", options_from_collection_for_select(Author.all, "id", "name"), include_blank: true %><br>
+<text>Filter By Genre:</text>
+<%= select_tag "genre", options_from_collection_for_select(Genre.all, "id", "name"), include_blank: true %><br>
+<%= submit_tag "Filter" %>
+<% end %>
 
 <ol>
 <%@books.each do |book|%>
-<li><%=book.title%> - <%=book.author_name%></li>
+<li><%=link_to book.title, book_path(book)%> - <%=link_to book.author_name, author_path(book.author)%></li>
 <%end%>
 </ol>
