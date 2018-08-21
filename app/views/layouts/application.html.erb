@@ -12,7 +12,7 @@
     <h1>Book Review</h1>
     <nav>
       <%if logged_in?%>
-      <%=link_to "#{current_user.name}'s <br /> Profile".html_safe, user_path(current_user), id:"profile"%>
+      <%=link_to "#{current_user_first_name}'s Profile", user_path(current_user), id:"profile"%>
       <%=link_to "Books", books_path%>
       <%=link_to "Authors", authors_path%>
       <%=link_to "Genres", genres_path%>
