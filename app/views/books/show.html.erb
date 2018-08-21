@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+   <div class="notice"><%= flash[:notice] %></div>
+ <% end %>
+
 <h1 class="index-head"><%=@book.title%></h1>
 <text class="new"><%=link_to "New Review", new_book_review_path(@book)%></text>
 <h3>Author: <%=link_to @book.author_name, author_path(@book.author)%></h3>
@@ -13,7 +17,8 @@
 
 <div class = "review">
 <%@reviews.each do |review|%>
-<h4 class="r-name"><%=link_to review.user.name, user_path(review.user)%></h4>
+<h4 class="r-name index-head"><%=link_to review.user.name, user_path(review.user)%></h4>
+<text class="new"><%=link_to "See Review", book_review_path(review.book, review)%></text>
 <p class="r-rating">Rating: <%=review.rating%></p>
 <p class="r-content"><%=review.content%></p><br>
 <%end%>

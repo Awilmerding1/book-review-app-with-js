@@ -20,14 +20,14 @@ class ReviewsController < ApplicationController
 
     def show
       if params[:book_id]
-        book = Book.find(params[:book_id])
+        book = Book.find_by(id: params[:book_id])
         if book.nil?
-          flash[:message] = "Book not found."
+          flash[:notice] = "Book not found."
           redirect_to books_path
         else
           @review = book.reviews.find_by(id: params[:id])
           if @review.nil?
-            flash[:message] = "Review not found."
+            flash[:notice] = "Review not found."
             redirect_to book_path(book)
           end
         end
@@ -38,12 +38,13 @@ class ReviewsController < ApplicationController
       if params[:book_id]
         book = Book.find(params[:book_id])
         if book.nil?
-          flash[:message] = "Book not found."
+          flash[:notice] = "Book not found."
           redirect_to books_path
         else
           @review = book.reviews.find_by(id: params[:id])
           if @review.nil?
-            redirect_to book_reviews_path(book), flash[:message] = "Review not found."
+            flash[:notice] = "Review not found."
+            redirect_to book_reviews_path(book)
           elsif @review.user_id == current_user.id
             @book = @review.book
           else

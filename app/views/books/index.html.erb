@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+   <div class="notice"><%= flash[:notice] %></div>
+ <% end %>
+
 <% if !params[:author].blank?%>
  <% @books = Book.where(author: params[:author]) %>
  <%@filtered_author = @books.first.author.name%>
