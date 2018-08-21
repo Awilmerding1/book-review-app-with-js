@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+   <div class="notice"><%= flash[:notice] %></div>
+ <% end %>
+
 <%if !params[:genre].blank?%>
   <% @books = Book.joins(:genres).where('genres.id = ?', params[:genre])%>
   <%@filtered_genre = @books.first.genres.first.name%>
@@ -7,7 +11,7 @@
 
 <text>Filter By Genre:</text>
 <%= form_tag("/authors/#{@author.id}", method: "get") do %>
-<%= select_tag "genre", options_from_collection_for_select(Genre.all, "id", "name"), include_blank: true %>
+<%= select_tag "genre", options_from_collection_for_select(@author.genres, "id", "name"), include_blank: true %>
 <%= submit_tag "Filter" %>
 <% end %><br>
 

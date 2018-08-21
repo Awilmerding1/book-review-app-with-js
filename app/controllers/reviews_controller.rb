@@ -67,7 +67,16 @@ class ReviewsController < ApplicationController
       end
 		end
 
-
+    def destroy
+      review = Review.find(params[:id])
+      if current_user.id == review.user_id
+        review.destroy
+	       redirect_to user_path(current_user)
+      else
+        flash[:notice] = "You may not delete another user's review."
+        redirect_to "/books/#{params[:book_id]}/reviews/#{params[:id]}"
+      end
+    end
 
   private
 

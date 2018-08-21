@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get "/books/:id/reviews/:id/edit" => "reviews#edit"
   patch "/books/:id/reviews/:id"  => "reviews#update"
   get '/auth/facebook/callback' => 'sessions#create'
-
+	delete 'books/:id/reviews/:id' => 'reviews#destroy'
   root 'users#home'
+
 end

@@ -16,3 +16,8 @@
 	<%= form_tag review_path(@review), method: "patch" do %>
 	  <%= render "form" %>
 	<% end %>
+
+
+	<%= form_tag book_review_path(@review.book, @review), method: "delete" do %>
+	<%= submit_tag "Delete Review" %>
+	<% end %>

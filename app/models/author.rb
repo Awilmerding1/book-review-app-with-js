@@ -26,5 +26,9 @@ class Author < ActiveRecord::Base
     self.name = self.name.titlecase
   end
 
+  def author_edit?
+    self.reviews.empty?
+  end
+
 
 end

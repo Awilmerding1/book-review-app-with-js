@@ -13,6 +13,8 @@
 <% end %>
 
 
-	<%= form_tag author_path(@author), method: "patch" do %>
-	  <%= render "form" %>
-	<% end %>
+<%= form_for @author do |f| %>
+<%=f.label "Name:"%>
+<%=f.text_field :name%><br>
+<%= f.submit "Edit Author"%>
+<% end %>
