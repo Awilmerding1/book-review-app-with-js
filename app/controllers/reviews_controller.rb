@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
 
+    before_action :require_login
+
 
   def new
     @review = Review.new(book_id: params[:book_id], user_id: current_user.id)

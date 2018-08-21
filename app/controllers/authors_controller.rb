@@ -1,5 +1,7 @@
 class AuthorsController < ApplicationController
 
+  before_action :require_login
+
   def index
     @authors = Author.all
     @genres = Genre.all
