@@ -7,6 +7,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
 
+gem 'rack-flash3'
 gem 'bcrypt'
 gem 'pry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
