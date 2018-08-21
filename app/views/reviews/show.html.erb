@@ -9,4 +9,8 @@
 
 <h3>Rating: <%=@review.rating%> Stars</h3>
 
-<p><%=@review.content%></p>
+<p><%=@review.content%></p><br><br><br><br>
+
+<%if current_user.id == @review.user_id%>
+<%=link_to "Edit Review", edit_book_review_path(@review.book, @review)%>
+<%end%>

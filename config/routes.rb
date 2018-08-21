@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get "/books/:id/reviews/:id" => "reviews#show"
   post "/books/:id/reviews/:id" => "reviews#create"
   get "/books/:id/reviews/:id/edit" => "reviews#edit"
-  patch "/books/:id/reviews/:id/edit"  => "reviews#update"
+  patch "/books/:id/reviews/:id"  => "reviews#update"
   get '/auth/facebook/callback' => 'sessions#create'
 
   root 'users#home'
