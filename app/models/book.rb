@@ -51,6 +51,9 @@ class Book < ActiveRecord::Base
     self.title = self.title.titlecase
   end
 
+  def book_edit?
+    self.reviews.empty?
+  end
 
 
 end

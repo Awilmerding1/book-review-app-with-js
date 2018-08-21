@@ -25,6 +25,29 @@ class BooksController < ApplicationController
       @genres = @book.genres
     end
 
+    def edit
+      book = Book.find(params[:id])
+      if book.book_edit?
+        @book = book
+      else
+        flash[:notice] = "You may not edit this book."
+        redirect_to book_path(book)
+      end
+    end
+
+    def update
+      book = Book.find(params[:id])
+      if book.book_edit?
+        @book = book
+        @book.update(book_params)
+        @book.save
+        redirect_to book_path(@book)
+      else
+        flash[:notice] = "You may not edit this book."
+        redirect_to book_path(book)
+      end
+    end
+
     private
 
     def book_params
