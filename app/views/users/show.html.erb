@@ -1,9 +1,12 @@
 	<% if !params[:author].blank?%>
 	 <% @reviews = Review.joins(:book).where('author_id = ?', params[:author]).where(user_id: current_user.id)%>
-  <%elsif !params[:book].blank?%>
+	 <%@filtered_author = @reviews.first.book.author_name%>
+	<%elsif !params[:book].blank?%>
     <% @reviews = Review.where(book: params[:book], user_id: current_user.id) %>
+		<%@filtered_book = @reviews.first.book.title%>
   <%elsif !params[:genre].blank?%>
-    <% @reviews = Review.joins(book: :genres).where('genres.id = ?', params[:genre]) %>
+    <% @reviews = Review.joins(book: :genres).where('genres.id = ?', params[:genre]).where(user_id: current_user.id) %>
+		<%@filtered_genre = @reviews.first.book.genres.first.name%>
 	<% end %>
 
 
@@ -20,7 +23,16 @@
 <text>Filter By Genre:</text>
 <%= select_tag "genre", options_from_collection_for_select(@user.genres.uniq, "id", "name"), include_blank: true %><br>
 <%= submit_tag "Filter" %>
-<% end %>
+<% end %><br>
+
+
+<%if @filtered_genre%>
+<h3>Reviews of <%=@filtered_genre%> Books</h3>
+<% elsif @filtered_author%>
+<h3>Reviews of Books By <%=@filtered_author%></h3>
+<% elsif @filtered_book%>
+<h3>Review(s) of <%=@filtered_book%></h3>
+<%end%><br>
 
 <% @reviews.each do |review| %>
   <div>
