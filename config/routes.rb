@@ -22,14 +22,14 @@ Rails.application.routes.draw do
   get '/login' => "sessions#new"
   post '/login' => "sessions#create"
   post '/logout' => "sessions#destroy"
-  get "/books/:id/reviews/new" => "reviews#new"
-  get "/books/:id/reviews" => "reviews#index"
-  get "/books/:id/reviews/:id" => "reviews#show"
-  post "/books/:id/reviews/:id" => "reviews#create"
-  get "/books/:id/reviews/:id/edit" => "reviews#edit"
-  patch "/books/:id/reviews/:id"  => "reviews#update"
+  # get "/books/:id/reviews/new" => "reviews#new"
+  # get "/books/:id/reviews" => "reviews#index"
+  # get "/books/:id/reviews/:id" => "reviews#show"
+  # post "/books/:id/reviews/:id" => "reviews#create"
+  # get "/books/:id/reviews/:id/edit" => "reviews#edit"
+  # patch "/books/:id/reviews/:id"  => "reviews#update"
   get '/auth/facebook/callback' => 'sessions#create'
-	delete 'books/:id/reviews/:id' => 'reviews#destroy'
+	# delete 'books/:id/reviews/:id' => 'reviews#destroy'
   root 'users#home'
 
 end
