@@ -39,9 +39,14 @@ class ReviewsController < ApplicationController
 
 		def update
 		  @review = Review.find(params[:id])
-		  @review.update(review_params)
-      @review.save
-		  redirect_to "/books/#{@review.book_id}/reviews/#{@review.id}"
+      if @review.user_id == current_user.id
+		      @review.update(review_params)
+          @review.save
+		      redirect_to "/books/#{@review.book_id}/reviews/#{@review.id}"
+      else
+        flash[:notice] = "You may not edit another user's review."
+        redirect_to "/books/#{params[:book_id]}/reviews/#{params[:id]}"
+      end
 		end
 
 
