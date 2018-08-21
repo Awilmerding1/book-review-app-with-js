@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+   <div class="notice"><%= flash[:notice] %></div>
+ <% end %>
+
 
 <h2><%=link_to @review.book_title, book_path(@review.book)%> Review</h2>
 <h3>Author: <%=link_to @review.book.author_name, author_path(@review.book.author)%></h3>
