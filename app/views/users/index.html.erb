@@ -1,0 +1,7 @@
+<h1>All Users</h1>
+
+<ol>
+<%@users.order(:name).each do |user|%>
+  <li><%=link_to user.name, user_path(user)%> - <%=link_to "#{user.reviews.count} Reviews", user_path(user)%></li>
+<%end%>
+</ol>
