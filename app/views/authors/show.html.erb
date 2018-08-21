@@ -7,7 +7,10 @@
   <%@filtered_genre = @books.first.genres.first.name%>
 <% end %>
 
-<h1><%=@author.name%></h1>
+<h1 class="index-head"><%=@author.name%></h1>
+<%if @author.author_edit?%>
+<%=link_to "Edit Author", edit_author_path(@author), class:"new"%>
+<%end%>
 
 <text>Filter By Genre:</text>
 <%= form_tag("/authors/#{@author.id}", method: "get") do %>

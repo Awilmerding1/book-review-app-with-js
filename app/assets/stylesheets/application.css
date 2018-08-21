@@ -117,6 +117,7 @@ main {
 .new {
   float: right;
   margin-right: 0;
+  padding-left:10px;
   display: inline-block;
 }
 
