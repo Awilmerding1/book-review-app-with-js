@@ -4,9 +4,6 @@
 
 <h1 class="index-head"><%=@book.title%></h1>
 <text class="new"><%=link_to "New Review", new_book_review_path(@book)%></text>
-<%if @book.book_edit?%>
-<%=link_to "Edit Book", edit_book_path(@book), class:"new"%>
-<%end%>
 <h3>Author: <%=link_to @book.author_name, author_path(@book.author)%></h3>
 <h3>Genres</h3>
 
@@ -25,6 +22,10 @@
 <%end%>
 <%=f.submit "Update Genre(s)"%>
 <%end%><br>
+
+<%if @book.book_edit?%>
+<%=link_to "Edit Book", edit_book_path(@book)%>
+<%end%><br><br>
 
 <h3>Reviews</h3>
 

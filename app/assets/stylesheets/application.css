@@ -124,3 +124,7 @@ main {
 .index-head {
     display:inline-block;
 }
+
+.delete {
+  display: inline-block;
+}
