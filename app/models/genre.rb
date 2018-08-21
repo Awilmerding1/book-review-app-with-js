@@ -17,4 +17,8 @@ class Genre < ActiveRecord::Base
     self.name = self.name.titlecase
   end
 
+  def genre_edit?
+    self.books.empty?
+  end
+
 end

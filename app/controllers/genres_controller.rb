@@ -24,6 +24,29 @@ class GenresController < ApplicationController
     @books = @genre.books
   end
 
+  def edit
+    genre = Genre.find(params[:id])
+    if genre.genre_edit?
+      @genre = genre
+    else
+      flash[:notice] = "You may not edit this genre."
+      redirect_to genre_path(genre)
+    end
+  end
+
+  def update
+    genre = Genre.find(params[:id])
+    if genre.genre_edit?
+      @genre = genre
+      @genre.update(genre_params)
+      @genre.save
+      redirect_to genre_path(@genre)
+    else
+      flash[:notice] = "You may not edit this genre."
+      redirect_to genre_path(genre)
+    end
+  end
+
   private
 
   def genre_params

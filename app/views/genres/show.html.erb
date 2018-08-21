@@ -1,4 +1,12 @@
-<h1><%=@genre.name%> Books</h1>
+<% if flash[:notice] %>
+   <div class="notice"><%= flash[:notice] %></div>
+ <% end %>
+
+
+<h1 class="index-head"><%=@genre.name%> Books</h1>
+<%if @genre.genre_edit?%>
+<%=link_to "Edit Genre", edit_genre_path(@genre), class:"new"%>
+<%end%>
 
 <ol>
 <%@genre.books.each do |book|%>
