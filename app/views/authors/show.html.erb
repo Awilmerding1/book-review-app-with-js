@@ -3,14 +3,14 @@
  <% end %>
 
 <%if !params[:genre].blank?%>
-  <% @books = Book.joins(:genres).where('genres.id = ?', params[:genre])%>
+  <% @books = Book.joins(:genres).where('genres.id = ?', params[:genre]).where(author_id: @author.id)%>
   <%@filtered_genre = @books.first.genres.first.name%>
 <% end %>
 
 <h1 class="index-head"><%=@author.name%></h1>
 <%if @author.author_edit?%>
 <%=link_to "Edit Author", edit_author_path(@author), class:"new"%>
-<%end%>
+<%end%><br>
 
 <text>Filter By Genre:</text>
 <%= form_tag("/authors/#{@author.id}", method: "get") do %>
