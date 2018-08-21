@@ -3,8 +3,13 @@ class ReviewsController < ApplicationController
   before_action :require_login
 
   def new
-    @review = Review.new(book_id: params[:book_id], user_id: current_user.id)
-    @book = Book.find(params[:book_id])
+    if params[:book_id] && !Book.exists?(params[:book_id])
+      flash[:message] = "Book not found."
+	     redirect_to books_path
+	  else
+      @review = Review.new(book_id: params[:book_id], user_id: current_user.id)
+      @book = Book.find(params[:book_id])
+    end
   end
 
   def create
@@ -14,7 +19,19 @@ class ReviewsController < ApplicationController
   end
 
     def show
-      @review = Review.find(params[:id])
+      if params[:book_id]
+        book = Book.find(params[:book_id])
+        if book.nil?
+          flash[:message] = "Book not found."
+          redirect_to books_path
+        else
+          @review = book.reviews.find_by(id: params[:id])
+          if @review.nil?
+            flash[:message] = "Review not found."
+            redirect_to book_path(book)
+          end
+        end
+      end
     end
 
     def edit

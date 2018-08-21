@@ -36,9 +36,10 @@
 
 <% @reviews.each do |review| %>
   <div>
-		<h3>Book Title: <%= link_to review.book.title, book_path(review.book) %></h3>
+		<h3 class="index-head">Book Title: <%= link_to review.book.title, book_path(review.book) %></h3>
+		<text class="new"><%=link_to "See Review", book_review_path(review.book, review)%></text>
     <h3>Author: <%= link_to review.book.author_name, author_path(review.book.author) %></h3>
 		<h4>Rating: <%= review.rating %> Stars</h4>
     <p><%= review.content %></p>
   </div>
-<% end %>
+<%end%>
