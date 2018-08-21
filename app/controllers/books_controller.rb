@@ -43,8 +43,10 @@ class BooksController < ApplicationController
         @book.save
         redirect_to book_path(@book)
       else
-        flash[:notice] = "You may not edit this book."
-        redirect_to book_path(book)
+        @book = book
+        @book.update(genre_ids: params[:book][:genre_ids], genres_attributes: params[:book][:genres_attributes])
+        @book.save
+        redirect_to book_path(@book)
       end
     end
 

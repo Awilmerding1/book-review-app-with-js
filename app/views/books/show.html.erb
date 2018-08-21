@@ -16,6 +16,16 @@
 <%end%>
 </ul>
 
+<h3>Add New Genre(s)</h3>
+
+<%=form_for @book do |f|%>
+<%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %>
+<%= f.fields_for :genres, @book.genres.build do |genres_fields| %><br>
+<%= genres_fields.text_field :name%>
+<%end%>
+<%=f.submit "Update Genre(s)"%>
+<%end%><br>
+
 <h3>Reviews</h3>
 
 <div class = "review">

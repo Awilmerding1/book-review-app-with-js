@@ -1,12 +1,11 @@
 	<% if !params[:author].blank?%>
-	 <% @reviews = Review.joins(:book).where('author_id = ?', params[:author]).where(user_id: current_user.id)%>
+	 <% @reviews = Review.joins(:book).where('author_id = ?', params[:author]).where(user_id: @user.id)%>
 	 <%@filtered_author = @reviews.first.book.author_name%>
 	<%elsif !params[:book].blank?%>
-    <% @reviews = Review.where(book: params[:book], user_id: current_user.id) %>
+    <% @reviews = Review.where(book: params[:book], user_id: @user.id) %>
 		<%@filtered_book = @reviews.first.book.title%>
   <%elsif !params[:genre].blank?%>
-    <% @reviews = Review.joins(book: :genres).where('genres.id = ?', params[:genre]).where(user_id: current_user.id) %>
-		<%@filtered_genre = @reviews.first.book.genres.first.name%>
+    <% @reviews = Review.joins(book: :genres).where('genre_id = ?', params[:genre]).where(user_id: @user.id) %>
 	<% end %>
 
 
