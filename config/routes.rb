@@ -1,16 +1,13 @@
 Rails.application.routes.draw do
 
-
   resources :books do
     resources :reviews
   end
 
-    resources :reviews, only: [:create, :update]
+  resources :reviews, only: [:create, :update]
 
-  resources :users do
-    resources :reviews
-  end
-  resources :books
+  resources :users
+
   resources :authors do
     resources :books
   end

@@ -24,7 +24,7 @@
 
 <ol>
 <%@books.each do |book|%>
-<li><h3><%=book.title%></h3></li>
+<li><h3><%=link_to book.title, book_path(book)%></h3></li>
 <ul>
 <li><h3>Genres</h3></li>
   <ul>

@@ -10,6 +10,8 @@ class Book < ActiveRecord::Base
 
   accepts_nested_attributes_for :genres
 
+
+
   def author_name=(name)
     self.author = Author.find_or_create_by(name: name)
   end
