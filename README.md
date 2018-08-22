@@ -13,10 +13,11 @@ You can install this application by running `git clone git@github.com:Awilmerdin
 
 ## Usage
 
-After cloning the repository, enter the `sinatra-porfolio-project` directory on your computer.
+After cloning the repository, enter the `book-review-app` directory on your computer.
 
-Run `bundle install`. Then run `shotgun` and navigate to the local host provided.
+Run `bundle install`. Then run `rails s` and navigate to the local host provided.
 
+Users can signup/login through facebook or by creating a username and password. 
 
 ## Contributing
 
