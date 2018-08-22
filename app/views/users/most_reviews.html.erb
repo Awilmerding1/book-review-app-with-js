@@ -1,0 +1,7 @@
+<h1>Top Reviewers</h1>
+
+<ol>
+<%@users.each do |user|%>
+  <li><%=link_to "#{user.name} - #{user.reviews.count} Review(s)", user_path(user)%></li>
+<%end%>
+</ol>

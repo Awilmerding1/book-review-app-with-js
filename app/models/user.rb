@@ -8,5 +8,7 @@ class User < ActiveRecord::Base
 
   scope :alphabetized, -> {order(:name)}
 
+  scope :most_reviews, -> {joins(:reviews).group("users.id").order("count(reviews.id) DESC").limit(5)}
+
 
 end

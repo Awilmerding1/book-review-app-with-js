@@ -28,10 +28,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def most_reviews
+    @users = User.most_reviews
+  end
+
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews
   end
+
 
   private
 

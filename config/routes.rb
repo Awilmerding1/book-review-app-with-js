@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/users/most-reviews' => 'users#most_reviews'
+
   resources :books do
     resources :reviews
   end
