@@ -4,10 +4,10 @@
 
 <% if !params[:author].blank?%>
  <% @books = Book.where(author: params[:author]) %>
- <%@filtered_author = @books.first.author.name%>
+ <%@filtered_author = @books.first.author.name unless @books.empty?%>
 <%elsif !params[:genre].blank?%>
   <% @books = Book.joins(:genres).where('genres.id = ?', params[:genre]) %>
-  <%@filtered_genre = @books.first.genres.first.name%>
+  <%@filtered_genre = @books.first.genres.first.name unless @books.empty?%>
 <% end %>
 
 <h1 class="index-head">All Books</h1>

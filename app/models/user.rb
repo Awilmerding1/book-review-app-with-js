@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 	has_many :books, through: :reviews
 	has_many :authors, through: :books
 	has_many :genres, through: :books
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   has_secure_password
 
 
