@@ -1,14 +1,15 @@
-# Adirondack 46ers
+# Book Review Site
 
-Within the Adirondack State Park, there are 46 peaks that are over 4000 feet tall. The title "46er" is awarded to anyone who has hiked all of these mountains.
 
-This application provides a platform for keeping track of which peaks a user has climbed. A user can add a hike to his/her profile with a description of the experience.  The user can then edit or delete the description of the hike or the entire hike itself.  
+This application provides a platform on which users can write book reviews and browse reviews written by other users. A user can only edit and delete a review if it has been written by himself/herself.  Users can view and filter lists of all authors, books, genres and other users. Users can also view a specific book, author, genre, review or user.
+
+A user can add new books, authors and genres to the site. Aside from adding/removing a genre to a book, a user can only edit or delete a book if it has not yet been reviewed. A user can only edit or delete an author if none of his/her books has been reviewed.  A user can only edit or delete a genre if it has not yet been associated with any books.
 
 Code License: https://opensource.org/licenses/MIT
 
 ## Installation
 
-You can install this application by running `git clone git@github.com:Awilmerding1/sinatra-porfolio-project.git` .
+You can install this application by running `git clone git@github.com:Awilmerding1/book-review-app.git` .
 
 ## Usage
 
