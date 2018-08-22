@@ -2,7 +2,7 @@
   <div id="error_explanation">
     <h2>
       <%= pluralize(@book.errors.count, "error") %>
-     		preventing you from adding an author:
+     		preventing you from adding a book:
       </h2>
     <ul>
     <% @book.errors.full_messages.each do |msg| %>
