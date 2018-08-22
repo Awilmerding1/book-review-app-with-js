@@ -1,7 +1,7 @@
 <h1>All Users</h1>
 
 <ol>
-<%@users.order(:name).each do |user|%>
+<%@users.alphabetized.each do |user|%>
   <li><%=link_to "#{user.name} - #{user.reviews.count} Review(s)", user_path(user)%></li>
 <%end%>
 </ol>
