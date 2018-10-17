@@ -14,6 +14,8 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require jquery
+//= require bookreview
 if (window.location.href.indexOf('#_=_') > 0) {
 
 window.location = window.location.href.replace(/#.*/, '');

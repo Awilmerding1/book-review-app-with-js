@@ -10,7 +10,7 @@
 	<% end %>
 
 
-<h1><%=@user.name%>'s Reviews</h1>
+<h1 data-id="<%= @user.id %>"><%=@user.name%>'s Reviews</h1>
 
 <h3>Book Reviews</h3>
 
@@ -34,7 +34,9 @@
 <h3>Review(s) of <%=@filtered_book%></h3>
 <%end%><br>
 
-<% @reviews.each do |review| %>
+<div id="allReviews"></div>
+
+<!-- <% @reviews.each do |review| %>
   <div>
 		<h3 class="index-head">Book Title: <%= link_to review.book.title, book_path(review.book) %></h3>
 		<text class="new"><%=link_to "See Review", book_review_path(review.book, review)%></text>
@@ -42,4 +44,4 @@
 		<h4>Rating: <%= review.rating %> Stars</h4>
     <p><%= review.content %></p>
   </div>
-<%end%>
+<%end%> -->
