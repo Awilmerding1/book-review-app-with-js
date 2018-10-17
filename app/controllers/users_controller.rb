@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+	   render json: @users, status: 200
   end
 
   def new
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
       @user = User.new
     else
       @user = User.find(session[:user_id])
-      redirect_to "/users/#{@user.id}"
+      render json: @user, status: 200
     end
   end
 
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to "/users/#{@user.id}"
+      render json: @user, status: 201
     else
       render '/users/new'
     end
@@ -35,6 +36,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews
+    render json: @user, status: 200
   end
 
 
