@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.save
-    render json: @review, status: 201
+    redirect_to "/books/#{@review.book_id}/reviews/#{@review.id}"
   end
 
     def show
@@ -30,7 +30,10 @@ class ReviewsController < ApplicationController
             flash[:notice] = "Review not found."
             redirect_to book_path(book)
           else
-            render json: @review, status: 200
+            respond_to do |format|
+            format.html { render :show }
+  	        format.json { render json: @review, status: 200}
+          end
           end
         end
       end

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :genres
 
+  get '/reviews' => "users#show"
   get '/signup' => "users#new"
   post '/users' => "users#create"
   get '/login' => "sessions#new"

@@ -36,7 +36,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews
-    render json: @user, status: 200
+    respond_to do |format|
+	        format.html { render :show }
+	        format.json { render json: @user, include: ["reviews"], status: 200}
+	    end
+
   end
 
 
