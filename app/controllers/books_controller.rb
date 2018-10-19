@@ -4,6 +4,10 @@ class BooksController < ApplicationController
 
     def index
       @books = Book.all
+      respond_to do |format|
+        format.html { render :index }
+        format.json { render json: @books, status: 200}
+    end
     end
 
     def new
@@ -13,7 +17,7 @@ class BooksController < ApplicationController
     def create
       @book = Book.new(book_params)
       if @book.save
-        redirect_to "/books/#{@book.id}"
+        render json: @book, status: 201
       else
         render '/books/new'
       end
@@ -23,6 +27,10 @@ class BooksController < ApplicationController
       @book = Book.find(params[:id])
       @reviews = @book.reviews
       @genres = @book.genres
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @book, status: 200}
+      end
     end
 
     def edit
