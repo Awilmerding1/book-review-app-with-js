@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
 
   before_action :require_login
 
+
   def new
     if params[:book_id] && !Book.exists?(params[:book_id])
       flash[:message] = "Book not found."

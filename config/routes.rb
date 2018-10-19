@@ -8,13 +8,15 @@ Rails.application.routes.draw do
 
   resources :reviews, only: [:create, :update]
 
-  resources :users
+  resources :users do
+    resources :reviews
+  end
 
   resources :authors
 
   resources :genres
 
-  get '/reviews' => "users#show"
+  # get '/reviews' => "users#show"
   get '/signup' => "users#new"
   post '/users' => "users#create"
   get '/login' => "sessions#new"
