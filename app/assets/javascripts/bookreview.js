@@ -35,7 +35,22 @@ $(function(){
                 alert("Review not found.")
                 window.location=`/books/${bookId}`
               }
-
 	        });
 	    });
 	});
+
+  $(function () {
+	   $('form').submit(function(event) {
+       event.preventDefault();
+       var values = $(this).serialize();
+       var posting = $.post('/reviews', values);
+       posting.done(function(data) {
+         console.log(data)
+         $("#bookReviewTitle").text(data["data"]["attributes"]["book"]["title"]);
+         $("#bookReviewAuthor").text(data.included[0].attributes.author.name);
+         $("#bookReviewReviewer").text(data["data"]["attributes"]["user"]["name"]);
+         $("#bookReviewRating").text(data["data"]["attributes"]["rating"]);
+         $("#bookReviewContent").text(data["data"]["attributes"]["content"]);
+       })
+     })
+   })

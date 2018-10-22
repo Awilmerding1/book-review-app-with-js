@@ -16,7 +16,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.save
-    redirect_to "/books/#{@review.book_id}/reviews/#{@review.id}"
+    render json: @review, include: :book, status: 201
   end
 
     def show
@@ -24,13 +24,8 @@ class ReviewsController < ApplicationController
         @book = Book.find_by(id: params[:book_id])
         @review = @book.reviews.find_by(id: params[:id])
           respond_to do |format|
-            # if @review.nil?
-            #   format.html { redirect_to book_path(@book) }
-            #   format.json { render json: @book }
-            # else
               format.html { render :show}
 	            format.json { render json: @review, include: :book, status: 200}
-            # end
           end
         end
     end
