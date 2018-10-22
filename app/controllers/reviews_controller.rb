@@ -20,29 +20,19 @@ class ReviewsController < ApplicationController
   end
 
     def show
-      # if params[:book_id]
+      if params[:book_id]
         @book = Book.find_by(id: params[:book_id])
-      #   if @book.nil?
-      #     flash[:notice] = "Book not found."
-      #     redirect_to books_path
-      #   else
         @review = @book.reviews.find_by(id: params[:id])
-      #     if @review.nil?
-      #       flash[:notice] = "Review not found."
-      #       redirect_to book_path(@book)
-      #     else
-            respond_to do |format|
-              if @review.nil?
-                format.html { redirect_to book_path(@book) }
-                format.json { render json: @book }
-              else
-                format.html { render :show}
-  	            format.json { render json: @review, include: :book, status: 200}
-              end
-            end
-        #   end
-        # end
-      # end
+          respond_to do |format|
+            # if @review.nil?
+            #   format.html { redirect_to book_path(@book) }
+            #   format.json { render json: @book }
+            # else
+              format.html { render :show}
+	            format.json { render json: @review, include: :book, status: 200}
+            # end
+          end
+        end
     end
 
     def edit
