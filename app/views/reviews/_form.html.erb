@@ -1,6 +1,6 @@
 <h1><%=@book.title%></h1>
 
-	<%= form_for(@review) do |f| %>
+	<%= form_for @review do |f| %>
   <%= f.hidden_field :user_id %>
 	<%= f.hidden_field :book_id%>
 	<%=f.label "Book Rating:"%>

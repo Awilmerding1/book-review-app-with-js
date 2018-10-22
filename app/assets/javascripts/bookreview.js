@@ -1,5 +1,44 @@
 $( document ).ready(function allReviews() {
 
+  $(function () {
+     $('#review_form').submit(function(event) {
+       event.preventDefault();
+       var values = $(this).serialize();
+       var posting = $.post('/reviews', values);
+       posting.done(function(data) {
+         $("#bookReviewTitle").text(data["data"]["attributes"]["book"]["title"]);
+         $("#bookReviewAuthor").text("Author: " + data.included[0].attributes.author.name);
+         $("#bookReviewReviewer").text("Reviwer: " + data["data"]["attributes"]["user"]["name"]);
+         $("#bookReviewRating").text("Rating: " + data["data"]["attributes"]["rating"]);
+         $("#bookReviewContent").text(data["data"]["attributes"]["content"]);
+       })
+     })
+   })
+
+   $(function () {
+      $('#filter_form').submit(function(event) {
+        event.preventDefault();
+        var title = $('#filter_title').val()
+        var author = $('#filter_author').val()
+        var genre = $('#filter_genre').val()
+        console.log(values)
+        // var id = $("h2")[0]["dataset"]["id"]
+        // $.get("/users/" + id + ".json", function(data) {
+        //   console.log(data)
+        //   if()
+        //   data.data.forEach(function(review) {
+
+            // $('#allReviews').append(`<div>
+            //   <h3>${review.attributes.book.title}</h3>
+            //   <h4>Rating: ${review["attributes"]["rating"]} Stars</h4>
+            //   <p>${review["attributes"]["content"]}</p>
+            // </div>`)
+          // })
+          // })
+        });
+      })
+
+
   });
 
 $(function(){
@@ -38,18 +77,3 @@ $(function(){
 	        });
 	    });
 	});
-
-  $(function () {
-	   $('form').submit(function(event) {
-       event.preventDefault();
-       var values = $(this).serialize();
-       var posting = $.post('/reviews', values);
-       posting.done(function(data) {
-         $("#bookReviewTitle").text(data["data"]["attributes"]["book"]["title"]);
-         $("#bookReviewAuthor").text("Author: " + data.included[0].attributes.author.name);
-         $("#bookReviewReviewer").text("Reviwer: " + data["data"]["attributes"]["user"]["name"]);
-         $("#bookReviewRating").text("Rating: " + data["data"]["attributes"]["rating"]);
-         $("#bookReviewContent").text(data["data"]["attributes"]["content"]);
-       })
-     })
-   })

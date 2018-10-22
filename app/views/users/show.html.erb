@@ -1,4 +1,4 @@
-	<% if !params[:author].blank?%>
+	<!-- <% if !params[:author].blank?%>
 	 <% @reviews = Review.joins(:book).where('author_id = ?', params[:author]).where(user_id: @user.id)%>
 	 <%@filtered_author = @reviews.first.book.author_name unless @reviews.empty?%>
 	<%elsif !params[:book].blank?%>
@@ -7,7 +7,7 @@
   <%elsif !params[:genre].blank?%>
     <% @reviews = Review.joins(book: :genres).where('genre_id = ?', params[:genre]).where(user_id: @user.id) %>
 		<%@filtered_genre = @reviews.first.book.genres.first.name unless @reviews.empty?%>
-	<% end %>
+	<% end %> -->
 
 
 <h2 data-id="<%= @user.id %>" class="userShow"><%=@user.name%>'s Reviews</h2>
@@ -15,24 +15,24 @@
 <h3>Book Reviews</h3>
 
 <text>Filter Reviews:</text>
-<%= form_tag("/users/#{@user.id}", method: "get") do %>
+<%= form_tag("/users/#{@user.id}", method: "get", id:"filter_form") do %>
 <text>Filter By Title:</text>
-<%= select_tag "book", options_from_collection_for_select(@user.books.uniq, "id", "title"), include_blank: true %><br>
+<%= select_tag "book", options_from_collection_for_select(@user.books.uniq, "id", "title"), include_blank: true, id:"filter_title" %><br>
 <text>Filter By Author:</text>
-<%= select_tag "author", options_from_collection_for_select(@user.authors.uniq, "id", "name"), include_blank: true %><br>
+<%= select_tag "author", options_from_collection_for_select(@user.authors.uniq, "id", "name"), include_blank: true, id:"filter_author" %><br>
 <text>Filter By Genre:</text>
-<%= select_tag "genre", options_from_collection_for_select(@user.genres.uniq, "id", "name"), include_blank: true %><br>
+<%= select_tag "genre", options_from_collection_for_select(@user.genres.uniq, "id", "name"), include_blank: true, id:"filter_genre" %><br>
 <%= submit_tag "Filter" %>
 <% end %><br>
 
 
-<%if @filtered_genre%>
+<!-- <%if @filtered_genre%>
 <h3>Reviews of <%=@filtered_genre%> Books</h3>
 <% elsif @filtered_author%>
 <h3>Reviews of Books By <%=@filtered_author%></h3>
 <% elsif @filtered_book%>
 <h3>Review(s) of <%=@filtered_book%></h3>
-<%end%><br>
+<%end%><br> -->
 
 <div id="allReviews"></div>
 
