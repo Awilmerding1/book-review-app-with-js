@@ -21,20 +21,25 @@ $( document ).ready(function allReviews() {
         var title = $('#filter_title').val()
         var author = $('#filter_author').val()
         var genre = $('#filter_genre').val()
-        console.log(values)
-        // var id = $("h2")[0]["dataset"]["id"]
-        // $.get("/users/" + id + ".json", function(data) {
-        //   console.log(data)
-        //   if()
-        //   data.data.forEach(function(review) {
-
-            // $('#allReviews').append(`<div>
-            //   <h3>${review.attributes.book.title}</h3>
-            //   <h4>Rating: ${review["attributes"]["rating"]} Stars</h4>
-            //   <p>${review["attributes"]["content"]}</p>
-            // </div>`)
-          // })
-          // })
+        var id = $("h2")[0]["dataset"]["id"]
+        $.get("/users/" + id + ".json", function(data) {
+          $('#allReviews').empty()
+          data.data.forEach(function(review) {
+            var appending = `<div>
+              <h3>${review.attributes.book.title}</h3>
+              <h4>Rating: ${review["attributes"]["rating"]} Stars</h4>
+              <p>${review["attributes"]["content"]}</p>
+            </div>`
+            if (title && review.attributes.book.id == title) {
+            $('#allReviews').append(appending)
+          } else if (author && review.attributes.book.author_id == author) {
+            $('#allReviews').append(appending)
+          }
+          //   else if (genre && review.attributes.book.genre_id == genre) {
+          //   $('#allReviews').append(appending)
+          // }
+            })
+          })
         });
       })
 
