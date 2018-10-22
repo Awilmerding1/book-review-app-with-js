@@ -4,13 +4,13 @@
  <p id="x"></p>
 
 <section class="js-book" data-book-id="<%=@review.book.id%>"></section>
-<a href="#" class="js-next" data-id="<%=@review.id%>">Next...</a>
+<a style="float:right;" href="#" class="js-next" data-id="<%=@review.id%>">Next...</a><br><br>
 
-<h2 class="bookTitle"><%=link_to @review.book_title, book_path(@review.book)%> Review</h2>
-<h3 class="bookAuthor">Author: <%=link_to @review.book.author_name, author_path(@review.book.author)%></h3>
-<h3 class="bookReviewer">Reviewer: <%=link_to @review.user.name, user_path(@review.user)%></h3>
+<h2 class="bookTitle" style="display:inline;"><%=link_to @review.book_title, book_path(@review.book)%> </h2> <h2 style="display:inline;">Review</h2><br>
+<h3 style="display:inline;">Author: </h3> <h3 style="display:inline;" class="bookAuthor" style="display:inline;"><%=link_to @review.book.author_name, author_path(@review.book.author)%></h3><br>
+<h3 style="display:inline;">Reviewer: </h3><h3 style="display:inline;" class="bookReviewer"><%=link_to @review.user.name, user_path(@review.user)%></h3><br>
 
-<h3 class="bookRating">Rating: <%=@review.rating%> Stars</h3>
+<h3 style="display:inline;">Rating: </h3><h3 style="display:inline;" class="bookRating"><%=@review.rating%> Stars</h3><br>
 
 <p class="bookContent"><%=@review.content%></p><br><br><br><br>
 
