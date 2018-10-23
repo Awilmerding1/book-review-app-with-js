@@ -31,12 +31,15 @@ $( document ).ready(function allReviews() {
               <p>${review["attributes"]["content"]}</p>
             </div>`
             if (title && review.attributes.book.id == title) {
-            $('#allReviews').append(appending)
+              $('#filterType').text(`Reviews of ${document.getElementById("filter_title").options[document.getElementById("filter_title").selectedIndex].text}`)
+              $('#allReviews').append(appending)
           } else if (author && review.attributes.book.author_id == author) {
-            $('#allReviews').append(appending)
+            $('#filterType').text(`Reviews of Books By ${document.getElementById("filter_author").options[document.getElementById("filter_author").selectedIndex].text}`)
+              $('#allReviews').append(appending)
           }
             else if (genres && review.attributes.genres.some(g => g["id"] == genres)) {
-            $('#allReviews').append(appending)
+              $('#filterType').text(`Reviews of ${document.getElementById("filter_genre").options[document.getElementById("filter_genre").selectedIndex].text} Books`)
+              $('#allReviews').append(appending)
           }
             })
           })
