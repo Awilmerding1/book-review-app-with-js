@@ -6,11 +6,13 @@ $( document ).ready(function allReviews() {
        var values = $(this).serialize();
        var posting = $.post('/reviews', values);
        posting.done(function(data) {
-         $("#bookReviewTitle").text(data["data"]["attributes"]["book"]["title"]);
-         $("#bookReviewAuthor").text("Author: " + data.included[0].attributes.author.name);
-         $("#bookReviewReviewer").text("Reviwer: " + data["data"]["attributes"]["user"]["name"]);
-         $("#bookReviewRating").text("Rating: " + data["data"]["attributes"]["rating"]);
-         $("#bookReviewContent").text(data["data"]["attributes"]["content"]);
+         var newReview = new Review(data["data"]["attributes"]["book"]["title"], data.included[0].attributes.author.name, data["data"]["attributes"]["user"]["name"], data["data"]["attributes"]["rating"], data["data"]["attributes"]["content"])
+         $("#reviewResult").append(newReview.format())
+         // $("#bookReviewTitle").text(data["data"]["attributes"]["book"]["title"]);
+         // $("#bookReviewAuthor").text("Author: " + data.included[0].attributes.author.name);
+         // $("#bookReviewReviewer").text("Reviwer: " + data["data"]["attributes"]["user"]["name"]);
+         // $("#bookReviewRating").text("Rating: " + data["data"]["attributes"]["rating"]);
+         // $("#bookReviewContent").text(data["data"]["attributes"]["content"]);
        })
      })
    })
@@ -45,6 +47,25 @@ $( document ).ready(function allReviews() {
           })
         });
       })
+
+  function Review(title, author, reviewer, rating, content) {
+    this.rating = rating;
+    this.content = content;
+    this.title = title;
+    this.author = author;
+    this.reviewer = reviewer;
+  }
+
+  Review.prototype.format = function() {
+    return `<div>
+      <h3>${this.title}</h3>
+      <h4>Author: ${this.author}</h4>
+      <h4>Reviewer: ${this.reviewer}</h4>
+      <h4>Rating: ${this.rating} Stars</h4>
+      <p>${this.content}</p>
+    </div>`
+  };
+
 
 
   });
