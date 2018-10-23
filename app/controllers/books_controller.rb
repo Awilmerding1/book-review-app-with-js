@@ -6,7 +6,7 @@ class BooksController < ApplicationController
       @books = Book.all
       respond_to do |format|
         format.html { render :index }
-        format.json { render json: @books, status: 200}
+        format.json { render json: @books, include: :users, status: 200}
       end
     end
 
@@ -17,7 +17,7 @@ class BooksController < ApplicationController
     def create
       @book = Book.new(book_params)
       if @book.save
-        render json: @book, status: 201
+        redirect_to book_path(@book)
       else
         render '/books/new'
       end

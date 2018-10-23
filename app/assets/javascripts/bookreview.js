@@ -75,7 +75,6 @@ $(function(){
   var id = $("h2")[0]["dataset"]["id"]
    $.get("/users/" + id + ".json", function(data) {
      data.data.forEach(function(review) {
-       console.log(review)
        $('#allReviews').append(`<div>
          <h3>${review.attributes.book.title}</h3>
          <h4>Rating: ${review["attributes"]["rating"]} Stars</h4>
@@ -88,22 +87,33 @@ $(function(){
 
 	$(function () {
 	    $(".js-next").on("click", function() {
-	        var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+	        var currentReviewId = parseInt($(".js-next").attr("data-id"));
           var bookId = parseInt($(".js-book").attr("data-book-id"))
-	        $.get("/books/" + bookId + "/reviews/" + nextId + ".json", function(data) {
-            console.log(data)
-              try {
-	            $(".bookTitle").text(data.data.attributes.book.title);
-	            $(".bookAuthor").text(data.included[0].attributes.author.name);
-	            $(".bookReviewer").text(data.data.attributes.user.name);
-              $(".bookRating").text(data.data.attributes.rating);
-              $(".bookContent").text(data.data.attributes.content);
-	            $(".js-next").attr("data-id", data["data"]["id"]);
-              }
-              catch(err) {
-                alert("Review not found.")
-                window.location=`/books/${bookId}`
-              }
-	        });
+          $.get("/books/" + bookId + ".json", function(data) {
+            var thisId = data.data.attributes.reviews.map(x => x["id"] == currentReviewId).indexOf(true)
+            console.log(data.data.attributes.reviews)
+            $(".bookTitle").text(data.data.attributes.title);
+            $(".bookAuthor").text(data.data.attributes.author.name);
+            $(".bookReviewer").text(data.data.attributes.users[thisId +1].name);
+            $(".bookRating").text(data.data.attributes.reviews[thisId +1].rating);
+            $(".bookContent").text(data.data.attributes.reviews[thisId +1].content);
+            $(".js-next").attr("data-id", data.data.attributes.reviews[thisId +1].id);
+          })
+
+	        // $.get("/books/" + bookId + "/reviews/" + nextId + ".json", function(data) {
+          //   console.log(data)
+          //     try {
+	        //     $(".bookTitle").text(data.data.attributes.book.title);
+	        //     $(".bookAuthor").text(data.included[0].attributes.author.name);
+	        //     $(".bookReviewer").text(data.data.attributes.user.name);
+          //     $(".bookRating").text(data.data.attributes.rating);
+          //     $(".bookContent").text(data.data.attributes.content);
+	        //     $(".js-next").attr("data-id", data["data"]["id"]);
+          //     }
+          //     catch(err) {
+          //       alert("Review not found.")
+          //       window.location=`/books/${bookId}`
+          //     }
+	        // });
 	    });
 	});
