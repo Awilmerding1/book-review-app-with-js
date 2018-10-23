@@ -8,11 +8,6 @@ $( document ).ready(function allReviews() {
        posting.done(function(data) {
          var newReview = new Review(data["data"]["attributes"]["book"]["title"], data.included[0].attributes.author.name, data["data"]["attributes"]["user"]["name"], data["data"]["attributes"]["rating"], data["data"]["attributes"]["content"])
          $("#reviewResult").append(newReview.format())
-         // $("#bookReviewTitle").text(data["data"]["attributes"]["book"]["title"]);
-         // $("#bookReviewAuthor").text("Author: " + data.included[0].attributes.author.name);
-         // $("#bookReviewReviewer").text("Reviwer: " + data["data"]["attributes"]["user"]["name"]);
-         // $("#bookReviewRating").text("Rating: " + data["data"]["attributes"]["rating"]);
-         // $("#bookReviewContent").text(data["data"]["attributes"]["content"]);
        })
      })
    })
@@ -107,21 +102,5 @@ $(function(){
               $(".js-next").attr("data-id", data.data.attributes.reviews[thisId].id);
             }
           })
-
-	        // $.get("/books/" + bookId + "/reviews/" + nextId + ".json", function(data) {
-          //   console.log(data)
-          //     try {
-	        //     $(".bookTitle").text(data.data.attributes.book.title);
-	        //     $(".bookAuthor").text(data.included[0].attributes.author.name);
-	        //     $(".bookReviewer").text(data.data.attributes.user.name);
-          //     $(".bookRating").text(data.data.attributes.rating);
-          //     $(".bookContent").text(data.data.attributes.content);
-	        //     $(".js-next").attr("data-id", data["data"]["id"]);
-          //     }
-          //     catch(err) {
-          //       alert("Review not found.")
-          //       window.location=`/books/${bookId}`
-          //     }
-	        // });
 	    });
 	});
