@@ -91,13 +91,21 @@ $(function(){
           var bookId = parseInt($(".js-book").attr("data-book-id"))
           $.get("/books/" + bookId + ".json", function(data) {
             var thisId = data.data.attributes.reviews.map(x => x["id"] == currentReviewId).indexOf(true)
-            console.log(data.data.attributes.reviews)
             $(".bookTitle").text(data.data.attributes.title);
             $(".bookAuthor").text(data.data.attributes.author.name);
+            try {
             $(".bookReviewer").text(data.data.attributes.users[thisId +1].name);
             $(".bookRating").text(data.data.attributes.reviews[thisId +1].rating);
             $(".bookContent").text(data.data.attributes.reviews[thisId +1].content);
             $(".js-next").attr("data-id", data.data.attributes.reviews[thisId +1].id);
+            }
+            catch(err) {
+              thisId = 0
+              $(".bookReviewer").text(data.data.attributes.users[thisId].name);
+              $(".bookRating").text(data.data.attributes.reviews[thisId].rating);
+              $(".bookContent").text(data.data.attributes.reviews[thisId].content);
+              $(".js-next").attr("data-id", data.data.attributes.reviews[thisId].id);
+            }
           })
 
 	        // $.get("/books/" + bookId + "/reviews/" + nextId + ".json", function(data) {
