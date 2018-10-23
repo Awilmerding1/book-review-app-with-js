@@ -25,7 +25,7 @@ class ReviewsController < ApplicationController
         @review = @book.reviews.find_by(id: params[:id])
           respond_to do |format|
               format.html { render :show}
-	            format.json { render json: @review, include: :book, status: 200}
+	            format.json { render json: @review, include: :book, :genre, status: 200}
           end
         end
     end
