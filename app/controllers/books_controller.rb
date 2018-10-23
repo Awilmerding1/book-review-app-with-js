@@ -7,7 +7,7 @@ class BooksController < ApplicationController
       respond_to do |format|
         format.html { render :index }
         format.json { render json: @books, status: 200}
-    end
+      end
     end
 
     def new

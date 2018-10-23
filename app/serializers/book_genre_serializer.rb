@@ -1,5 +1,5 @@
 class BookGenreSerializer < ActiveModel::Serializer
-  attributes :id
-  belongs_to :book
-  belongs_to :genre
+  attributes :id, :book, :genre
+  belongs_to :book, serializer: GenreSerializer
+  belongs_to :genre, serializer: BookSerializer
 end

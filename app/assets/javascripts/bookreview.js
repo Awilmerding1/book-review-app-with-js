@@ -20,7 +20,7 @@ $( document ).ready(function allReviews() {
         event.preventDefault();
         var title = $('#filter_title').val()
         var author = $('#filter_author').val()
-        var genre = $('#filter_genre').val()
+        var genres = $('#filter_genre').val()
         var id = $("h2")[0]["dataset"]["id"]
         $.get("/users/" + id + ".json", function(data) {
           $('#allReviews').empty()
@@ -35,9 +35,9 @@ $( document ).ready(function allReviews() {
           } else if (author && review.attributes.book.author_id == author) {
             $('#allReviews').append(appending)
           }
-          //   else if (genre && review.attributes.book.genre_id == genre) {
-          //   $('#allReviews').append(appending)
-          // }
+            else if (genres && review.attributes.genres.some(g => g["id"] == genres)) {
+            $('#allReviews').append(appending)
+          }
             })
           })
         });
