@@ -8,7 +8,9 @@ $( document ).ready(function allReviews() {
        var posting = $.post('/books/' + book_id, values);
        posting.done(function(data) {
          var updateBook = data.data.attributes.genres
-           $("#genreList").innerHTML(updateBook.map(x => `<li>${x.name}</li>`))
+         var bookGenres = updateBook.map(x => `<li>${x.name}</li>`)
+           $("#genreList").empty()
+            $("#genreList").append(bookGenres)
        })
      })
    })
@@ -95,10 +97,8 @@ $(function(){
 
 $(function(){
   if($('h1').is('.bookShow')){
-    console.log($("h1"))
   var id = $("h1")[1]["dataset"]["id"]
    $.get("/books/" + id + ".json", function(data) {
-     console.log(data)
      data.data.attributes.genres.forEach(function(genre) {
        $('#genreList').append(`<li>${genre.name}</li>`)
      })
