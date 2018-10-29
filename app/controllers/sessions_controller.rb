@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    binding.pry
     if auth && User.find_by(name: auth[:info]['name'])
       @user = User.find_by(name: auth[:info]['name'])
     	session[:user_id] = @user.id
