@@ -9,8 +9,8 @@ $( document ).ready(function allReviews() {
        posting.done(function(data) {
          var updateBook = data.data.attributes.genres
          var bookGenres = updateBook.map(x => `<li>${x.name}</li>`)
-           $("#genreList").empty()
-            $("#genreList").append(bookGenres)
+          $("#genreList").empty()
+          $("#genreList").append(bookGenres)
        })
      })
    })
