@@ -1,6 +1,19 @@
 $( document ).ready(function allReviews() {
 
   $(function () {
+     $('#update_form').submit(function(event) {
+       event.preventDefault();
+       var book_id = $("h1")[1]["dataset"]["id"]
+       var values = $(this).serialize();
+       var posting = $.post('/books/' + book_id, values);
+       posting.done(function(data) {
+         var updateBook = data.data.attributes.genres
+           $("#genreList").innerHTML(updateBook.map(x => `<li>${x.name}</li>`))
+       })
+     })
+   })
+
+  $(function () {
      $('#review_form').submit(function(event) {
        event.preventDefault();
        var values = $(this).serialize();
@@ -75,6 +88,19 @@ $(function(){
          <h4>Rating: ${review["attributes"]["rating"]} Stars</h4>
          <p>${review["attributes"]["content"]}</p>
        </div>`)
+     })
+  });
+  }
+});
+
+$(function(){
+  if($('h1').is('.bookShow')){
+    console.log($("h1"))
+  var id = $("h1")[1]["dataset"]["id"]
+   $.get("/books/" + id + ".json", function(data) {
+     console.log(data)
+     data.data.attributes.genres.forEach(function(genre) {
+       $('#genreList').append(`<li>${genre.name}</li>`)
      })
   });
   }

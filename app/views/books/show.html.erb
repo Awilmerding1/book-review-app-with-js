@@ -2,20 +2,20 @@
    <div class="notice"><%= flash[:notice] %></div>
  <% end %>
 
-<h1 class="index-head"><%=@book.title%></h1>
+<h1 class="bookShow" class="index-head" data-id="<%= @book.id %>"><%=@book.title%></h1>
 <text class="new"><%=link_to "New Review", new_book_review_path(@book)%></text>
 <h3>Author: <%=link_to @book.author_name, author_path(@book.author)%></h3>
 <h3>Genres</h3>
 
-<ul>
-<%@book.genres.each do |genre|%>
+<ul id="genreList">
+<!-- <%@book.genres.each do |genre|%>
   <li> <%=link_to genre.name, genre_path(genre)%> </li>
-<%end%>
+<%end%> -->
 </ul>
 
 <h3>Add New Genre(s)</h3>
 
-<%=form_for @book do |f|%>
+<%=form_for @book, :html => {:id => "update_form"} do |f|%>
 <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %>
 <%= f.fields_for :genres, @book.genres.build do |genres_fields| %><br>
 <%= genres_fields.text_field :name%>

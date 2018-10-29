@@ -49,12 +49,14 @@ class BooksController < ApplicationController
         @book = book
         @book.update(book_params)
         @book.save
-        redirect_to book_path(@book)
+        # redirect_to book_path(@book)
+        render json: @book, status: 202
       else
         @book = book
         @book.update(genre_ids: params[:book][:genre_ids], genres_attributes: params[:book][:genres_attributes])
         @book.save
-        redirect_to book_path(@book)
+        # redirect_to book_path(@book)
+        render json: @book, status: 202
       end
     end
 
