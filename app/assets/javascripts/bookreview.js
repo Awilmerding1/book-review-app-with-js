@@ -1,6 +1,7 @@
 $( document ).ready(function allReviews() {
 
   $(function () {
+    if($('h1').is('.bookShow')){
      $('#update_form').submit(function(event) {
        event.preventDefault();
        var book_id = $("h1")[1]["dataset"]["id"]
@@ -13,6 +14,7 @@ $( document ).ready(function allReviews() {
           $("#genreList").append(bookGenres)
        })
      })
+    }
    })
 
   $(function () {
