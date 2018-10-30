@@ -1,3 +1,5 @@
+<div id="part">
+
 <% if @review.errors.any? %>
   <div id="error_explanation">
     <h2>
@@ -13,11 +15,14 @@
 <% end %>
 
 
-	<%= form_tag review_path(@review), method: "patch" do %>
+	<%= form_tag review_path(@review), id:"editPage", method: "patch" do %>
 	  <%= render "form" %>
 	<% end %><br>
+
 
 
 	<%= form_tag book_review_path(@review.book, @review), method: "delete" do %>
 	<%= submit_tag "Delete Review", class:"delete" %>
 	<% end %>
+
+</div>

@@ -49,18 +49,14 @@ class BooksController < ApplicationController
         @book = book
         @book.update(book_params)
         @book.save
-        respond_to do |format|
-          format.html { render :edit }
-          format.json { render render json: @book, status: 202}
-        end
+        render json: @book, status: 202
       else
         @book = book
         @book.update(genre_ids: params[:book][:genre_ids], genres_attributes: params[:book][:genres_attributes])
         @book.save
-        respond_to do |format|
-          format.html { render :edit }
-          format.json { render render json: @book, status: 202}
-        end
+        @reviews = @book.reviews
+        @genres = @book.genres
+        render json: @book, status: 202
       end
     end
 

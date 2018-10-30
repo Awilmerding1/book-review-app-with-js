@@ -1,7 +1,6 @@
 $( document ).ready(function allReviews() {
 
   $(function () {
-    if($('h1').is('.bookShow')){
      $('#update_form').submit(function(event) {
        event.preventDefault();
        var book_id = $("h1")[1]["dataset"]["id"]
@@ -14,8 +13,27 @@ $( document ).ready(function allReviews() {
           $("#genreList").append(bookGenres)
        })
      })
-    }
    })
+
+   $(function () {
+      $('#update_title_author').submit(function(event) {
+        event.preventDefault();
+        var book_id = $("h1")[1]["dataset"]["id"]
+        var values = $(this).serialize();
+        var posting = $.post('/books/' + book_id, values);
+        posting.done(function(data) {
+          var updateAuthor = data.data.attributes.author.name
+          var updateTitle = data.data.attributes.title
+          console.log(updateAuthor)
+          console.log(updateTitle)
+           $("#bookTitleEdit").empty()
+           $("#bookTitleEdit").append(updateTitle)
+           $("#bookAuthorEdit").empty()
+           $("#bookAuthorEdit").append("Author: "+ updateAuthor)
+        })
+      })
+    })
+
 
   $(function () {
      $('#review_form').submit(function(event) {
