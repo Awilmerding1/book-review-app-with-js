@@ -71,11 +71,10 @@ $( document ).ready(function allReviews() {
               $('#allReviews').append(appending)
           } if (author && review.attributes.book.author_id == author) {
              a = `Books By ${document.getElementById("filter_author").options[document.getElementById("filter_author").selectedIndex].text} `
-
              if ($(`div:contains("${review.attributes.book.title}")`).length == 0) {
                 $('#allReviews').append(appending)
               }
-          }
+            }
              if (genres && review.attributes.genres.some(g => g["id"] == genres)) {
                g = `${document.getElementById("filter_genre").options[document.getElementById("filter_genre").selectedIndex].text} Books`
                if ($(`div:contains("${review.attributes.book.title}")`).length == 0) {
@@ -155,6 +154,7 @@ $(function(){
 	        var currentReviewId = parseInt($(".js-next").attr("data-id"));
           var bookId = parseInt($(".js-book").attr("data-book-id"))
           $.get("/books/" + bookId + ".json", function(data) {
+            if (data.data.attributes.reviews.length > 0) {
             var thisId = data.data.attributes.reviews.map(x => x["id"] == currentReviewId).indexOf(true)
             $(".bookTitle").text(data.data.attributes.title);
             $(".bookAuthor").text(data.data.attributes.author.name);
@@ -171,6 +171,8 @@ $(function(){
               $(".bookContent").text(data.data.attributes.reviews[thisId].content);
               $(".js-next").attr("data-id", data.data.attributes.reviews[thisId].id);
             }
+            }
           })
+
 	    });
 	});
