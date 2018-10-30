@@ -9,19 +9,19 @@ Code License: https://opensource.org/licenses/MIT
 
 ## Installation
 
-You can install this application by running `git clone git@github.com:Awilmerding1/book-review-app.git` .
+You can install this application by running `git clone git@github.com:Awilmerding1/book-review-app-with-js.git` .
 
 ## Usage
 
-After cloning the repository, enter the `book-review-app` directory on your computer.
+After cloning the repository, enter the `book-review-app-with-js` directory on your computer.
 
-Run `bundle install`. Then run `rails s` and navigate to the local host provided.
+Run `bundle install` and `rake db:migrate`. Then run `rails s` and navigate to the local host provided.
 
-Users can signup/login through facebook or by creating a username and password. 
+Users can signup/login through facebook or by creating a username and password.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/awilmerding1/sinatra-portfolio-project. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/awilmerding1/book-review-app-with-js. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -29,4 +29,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Destinations project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/awilmerding1/awilmerding-cli-app/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Destinations project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/awilmerding1/book-review-app-with-js/blob/master/CODE_OF_CONDUCT.md).
