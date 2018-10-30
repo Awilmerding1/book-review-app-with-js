@@ -1,10 +1,11 @@
-<section id="wholePage">
+
 
 <% if flash[:notice] %>
    <div class="notice"><%= flash[:notice] %></div>
  <% end %>
 <%if @book.book_edit?%>
   <h1 id="bookTitleEdit" class="bookShow" class="index-head" data-id="<%= @book.id %>"><%=@book.title%></h1>
+  <text class="new"><%=link_to "New Review", new_book_review_path(@book)%></text>
   <%= form_for @book, :html => {:id => "update_title_author"} do |f| %>
   <%=f.label "Title:"%>
   <%=f.text_field :title%><br><br>
@@ -42,9 +43,9 @@
 <%=f.submit "Update Genre(s)"%>
 <%end%><br>
 
-<%if @book.book_edit?%>
+<!-- <%if @book.book_edit?%>
 <a href="#" class="js-edit" data-id="<%=@book.id%>">Edit Book</a>
-<%end%><br><br>
+<%end%><br><br> -->
 
 <h3>Reviews</h3>
 
@@ -56,5 +57,3 @@
 <p class="r-content"><%=review.content%></p><br>
 <%end%>
 </div>
-
-</section>
