@@ -51,11 +51,15 @@ $( document ).ready(function allReviews() {
       $('#filter_form').submit(function(event) {
         event.preventDefault();
         var title = $('#filter_title').val()
+        var t
+        var a
+        var g
         var author = $('#filter_author').val()
         var genres = $('#filter_genre').val()
         var id = $("h2")[0]["dataset"]["id"]
         $.get("/users/" + id + ".json", function(data) {
           $('#allReviews').empty()
+          $('#filterType').text("Review(s) of ")
           data.data.forEach(function(review) {
             var appending = `<div>
               <h3>${review.attributes.book.title}</h3>
@@ -63,17 +67,22 @@ $( document ).ready(function allReviews() {
               <p>${review["attributes"]["content"]}</p>
             </div>`
             if (title && review.attributes.book.id == title) {
-              $('#filterType').text(`Reviews of ${document.getElementById("filter_title").options[document.getElementById("filter_title").selectedIndex].text}`)
+               t = `${document.getElementById("filter_title").options[document.getElementById("filter_title").selectedIndex].text} `
               $('#allReviews').append(appending)
-          } else if (author && review.attributes.book.author_id == author) {
-            $('#filterType').text(`Reviews of Books By ${document.getElementById("filter_author").options[document.getElementById("filter_author").selectedIndex].text}`)
-              $('#allReviews').append(appending)
+          } if (author && review.attributes.book.author_id == author) {
+             a = `Books By ${document.getElementById("filter_author").options[document.getElementById("filter_author").selectedIndex].text} `
+             if ($( "#allReviews:contains(appending)" ) == false) {
+                $('#allReviews').append(appending)
+              }
           }
-            else if (genres && review.attributes.genres.some(g => g["id"] == genres)) {
-              $('#filterType').text(`Reviews of ${document.getElementById("filter_genre").options[document.getElementById("filter_genre").selectedIndex].text} Books`)
-              $('#allReviews').append(appending)
-          }
+             if (genres && review.attributes.genres.some(g => g["id"] == genres)) {
+               g = `${document.getElementById("filter_genre").options[document.getElementById("filter_genre").selectedIndex].text} Books`
+               if ($( "#allReviews:contains(appending)" ) == false) {
+                $('#allReviews').append(appending)
+              }
+            }
             })
+              $('#filterType').append(t, a, g)
           })
         });
       })
