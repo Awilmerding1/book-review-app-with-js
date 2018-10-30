@@ -5,6 +5,7 @@ class Book < ActiveRecord::Base
 	has_many :reviews
 	has_many :users, through: :reviews
   validates :title, :presence => {message: "- please enter a title."}, :uniqueness => {message: "- the book title you entered has already been added to the website."}
+  validates :genres, uniqueness: :true
   validate :is_title_case
 	before_validation :make_title_case
 
@@ -30,7 +31,11 @@ class Book < ActiveRecord::Base
     genre_attributes.values.each do |genre_attribute|
       if Genre.find_by(genre_attribute)
         genre = Genre.find_by(genre_attribute)
-        self.genres << genre
+        self.genres.each do |a_genre|
+          unless a_genre.id == genre.id
+          self.genres << genre
+          end
+        end
       else
         unless genre_attribute.values.first == ""
           genre = Genre.new(genre_attribute)
