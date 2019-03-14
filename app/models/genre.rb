@@ -6,13 +6,9 @@ class Genre < ActiveRecord::Base
   validate :is_title_case
   before_validation :make_title_case
 
-  # def has_book_only_once(book_id)
-  #   self.books.map do |book|
-  #     if book.id == book_id
-  #       return false
-  #     end
-  #   end
-  # end
+  scope :alphabetized, -> {order(:name)}
+
+
 
   def is_title_case
     if name.split.any?{|w|w[0].upcase != w[0]}

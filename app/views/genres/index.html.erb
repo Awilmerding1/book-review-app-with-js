@@ -1,8 +1,10 @@
 <h1 class="index-head">All Genres</h1>
 <text class="new"><%=link_to "New Genre", new_genre_path%></text>
 
+
+
 <ol>
-  <%@genres.each do |genre|%>
+  <%@genres.alphabetized.each do |genre|%>
   <li><%=link_to genre.name, genre_path(genre)%></li>
   <%end%>
 </ol>
